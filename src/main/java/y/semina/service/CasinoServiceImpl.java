@@ -43,7 +43,7 @@ public class CasinoServiceImpl implements CasinoService {
     public void playGame(Game game) {
         if (game == null)
             throw new NullPointerException("Значение не может быть null");
-        BigDecimal winnings = BigDecimal.ZERO;
+        BigDecimal winnings;
         try {
             winnings = game.playGame(player.makeBet());
         } catch (NotEnoughMoneyException ex){

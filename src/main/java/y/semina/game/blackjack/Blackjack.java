@@ -14,7 +14,7 @@ public class Blackjack implements Game {
     private int playerScore;
 
     private static final int BLACKJACK = 21;
-    private static final int MAGIC_NUMBER_FOR_DEALER = 17;
+    private static final int MAGIC_NUMBER_FOR_DEALER = 14;
 
     private static final BigDecimal BLACKJACK_MULTIPLY = BigDecimal.valueOf(3);
     private static final BigDecimal WIN_MULTIPLY = BigDecimal.valueOf(2);

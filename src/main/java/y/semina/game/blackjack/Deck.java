@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Deck {
 
-    List<Card> cards;
+    private final List<Card> cards;
 
     public Deck() {
         cards = shuffleDeck(initDeck());
