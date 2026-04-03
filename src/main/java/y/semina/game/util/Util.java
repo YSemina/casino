@@ -1,6 +1,7 @@
 package y.semina.game.util;
 
 import java.math.BigDecimal;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Util {
@@ -24,7 +25,13 @@ public class Util {
 
     public static boolean exit() {
         System.out.println("Для выхода нажимай 0, для продолжения любую кнопку");
-        int choice = new Scanner(System.in).nextInt();
+        int choice;
+        try {
+            choice = new Scanner(System.in).nextInt();
+        } catch (InputMismatchException ex){
+            choice = 1;
+        }
+
         return choice == 0;
     }
 
