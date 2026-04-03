@@ -58,6 +58,8 @@ public class Blackjack implements Game {
             return showLose(true);
         } else if (dealerScore < playerScore || dealerScore > BLACKJACK)
             return calculateWinningsAndShowInfo(betAmount, false);
+        else if (dealerScore > playerScore)
+            return showLose(false);
         else //if (dealerScore == playerScore)
         {
             winnings = betAmount;

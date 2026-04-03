@@ -1,5 +1,6 @@
 package y.semina.game.model;
 
+import y.semina.exception.NotEnoughMoneyException;
 import y.semina.game.util.Util;
 
 import java.math.BigDecimal;
@@ -20,16 +21,14 @@ public class Player {
 
     public BigDecimal makeBet() {
         BigDecimal betAmount = Util.makeBet();
-        account.withdraw(betAmount);
-        System.out.println("С баланса списано " + betAmount);
-        System.out.println("Текущий баланс - " + getBalance());
-        return betAmount;
+        if (account.withdraw(betAmount))
+            return betAmount;
+        else
+            throw new NotEnoughMoneyException("Недостаточно денег для ставки");
     }
 
     public void deposit(BigDecimal amount) {
         account.deposit(amount);
-        System.out.println("Баланс пополнен на " + amount);
-        System.out.println("Текущий баланс - " + getBalance());
     }
 
     public BigDecimal getBalance() {

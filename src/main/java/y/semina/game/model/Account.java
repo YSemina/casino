@@ -22,18 +22,27 @@ public class Account {
     }
 
     public void deposit(BigDecimal amount) {
-        amountAccount = amountAccount.add(amount);
+        if (amount.compareTo(BigDecimal.ZERO) > 0) {
+            amountAccount = amountAccount.add(amount);
+            System.out.println("Баланс пополнен на " + amount);
+            System.out.println("Текущий баланс - " + amountAccount);
+        }
     }
 
-    public void withdraw(BigDecimal amount) {
+    public boolean withdraw(BigDecimal amount) {
         if (amount.compareTo(amountAccount) <= 0) {
             amountAccount = amountAccount.subtract(amount);
-        } else {
+            System.out.println("С баланса списано " + amount);
+            System.out.println("Текущий баланс - " + amountAccount);
+            return true;
+        }
+        else
+        {
             System.out.println("Недостаточно средств на счёте для списания. Доступно " + amountAccount);
             if (isDeposit()) {
-                withdraw(amount);
+                return withdraw(amount);
             } else
-                withdraw(BigDecimal.ZERO);
+                return false;
         }
     }
 

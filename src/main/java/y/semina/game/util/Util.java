@@ -34,7 +34,7 @@ public class Util {
         try {
             number = scanner().nextInt();
         } catch (Exception ex) {
-            System.out.println("Нужно ввести число");
+            System.out.println("Нужно было ввести число");
         }
         return number;
     }

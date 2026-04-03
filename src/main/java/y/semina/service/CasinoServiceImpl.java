@@ -1,5 +1,6 @@
 package y.semina.service;
 
+import y.semina.exception.NotEnoughMoneyException;
 import y.semina.game.Game;
 import y.semina.game.blackjack.Blackjack;
 import y.semina.game.model.Player;
@@ -42,7 +43,13 @@ public class CasinoServiceImpl implements CasinoService {
     public void playGame(Game game) {
         if (game == null)
             throw new NullPointerException("Значение не может быть null");
-        BigDecimal winnings = game.playGame(player.makeBet());
+        BigDecimal winnings = BigDecimal.ZERO;
+        try {
+            winnings = game.playGame(player.makeBet());
+        } catch (NotEnoughMoneyException ex){
+            System.out.println("Недостаточно денег для ставки");
+            return;
+        }
         if (winnings.compareTo(BigDecimal.ZERO) > 0)
             player.deposit(winnings);
         int playerChoice = printChoice("На твоем счету " + player.getBalance() +
