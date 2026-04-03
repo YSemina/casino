@@ -32,8 +32,7 @@ public class Account {
             System.out.println("Недостаточно средств на счёте для списания. Доступно " + amountAccount);
             if (isDeposit()) {
                 withdraw(amount);
-            }
-            else
+            } else
                 withdraw(BigDecimal.ZERO);
         }
     }

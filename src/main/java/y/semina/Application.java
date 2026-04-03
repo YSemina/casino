@@ -15,7 +15,7 @@ public class Application {
         boolean flag = true;
         while (flag) {
             game = service.choiceGame();
-            if (game == null){
+            if (game == null) {
                 break;
             }
             service.playGame(game);

@@ -26,13 +26,13 @@ public class Player {
         return betAmount;
     }
 
-    public void deposit(BigDecimal amount){
+    public void deposit(BigDecimal amount) {
         account.deposit(amount);
         System.out.println("Баланс пополнен на " + amount);
         System.out.println("Текущий баланс - " + getBalance());
     }
 
-    public BigDecimal getBalance(){
+    public BigDecimal getBalance() {
         return account.getAmountAccount();
     }
 

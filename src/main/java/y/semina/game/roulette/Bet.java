@@ -16,11 +16,11 @@ public enum Bet {
 
     public static Bet fromValue(int number) {
         if (number < 0 || number >= VALUES.length)
-            throw new IllegalArgumentException("Допустимые значения - от 0 до " + (VALUES.length-1));
+            throw new IllegalArgumentException("Допустимые значения - от 0 до " + (VALUES.length - 1));
         return VALUES[number];
     }
 
-    public static int getCountBets(){
+    public static int getCountBets() {
         return VALUES.length;
     }
 

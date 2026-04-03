@@ -47,8 +47,7 @@ public class Blackjack implements Game {
                     return calculateWinningsAndShowInfo(betAmount, true);
                 }
                 showScore();
-            }
-            else
+            } else
                 flag = false;
         }
         while (dealerScore < MAGIC_NUMBER_FOR_DEALER) {
@@ -67,15 +66,14 @@ public class Blackjack implements Game {
         }
     }
 
-    private boolean isNeededCard(){
+    private boolean isNeededCard() {
         int playerNumber = printChoice("\nЕщё карту?"
                 + "\n0 - да"
                 + "\n1 - нет");
         if (playerNumber < 0 || playerNumber > 1) {
             System.out.println("Нужно ввести 0 или 1");
             return isNeededCard();
-        }
-        else return playerNumber != 1;
+        } else return playerNumber != 1;
     }
 
     private BigDecimal calculateWinningsAndShowInfo(BigDecimal betAmount, boolean blackjack) {
@@ -120,7 +118,7 @@ public class Blackjack implements Game {
         return winnings;
     }
 
-    private void showInfo(boolean blackjack){
+    private void showInfo(boolean blackjack) {
         showScore();
         showWinnings(blackjack);
     }

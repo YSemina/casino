@@ -16,7 +16,7 @@ public class Deck {
         cards = shuffleDeck(initDeck());
     }
 
-    public Card pollCard(){
+    public Card pollCard() {
         if (!cards.isEmpty()) {
             return cards.remove(0);
         }
@@ -44,7 +44,7 @@ public class Deck {
         int remainingSize = deck.size();
         List<Card> shuffledDeck = new ArrayList<>(deckSize);
         Random random = new Random();
-        for (int i = 0; i < deckSize; i++){
+        for (int i = 0; i < deckSize; i++) {
             int indexForShuffle = random.nextInt(remainingSize);
             shuffledDeck.add(deck.remove(indexForShuffle));
             remainingSize--;

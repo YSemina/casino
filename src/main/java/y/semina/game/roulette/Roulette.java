@@ -93,14 +93,14 @@ public class Roulette implements Game {
             return playStraightBet();
         }
         int number = spinWheel().number();
-        if (number == usersNumber){
+        if (number == usersNumber) {
             return betAmount.multiply(STRAIGHT_BET_MULTIPLY);
         }
         return BigDecimal.ZERO;
     }
 
     private BigDecimal playSplit() {
-        int [] usersNumber = new int [2];
+        int[] usersNumber = new int[2];
         usersNumber[0] = printChoice("Введи число от 1 до 35. Второе число для ставки будет на 1 больше.");
         if (usersNumber[0] < 1 || usersNumber[0] > 35) {
             System.out.println("Нужно ввести число от 1 до 35");
@@ -108,14 +108,14 @@ public class Roulette implements Game {
         }
         usersNumber[1] = usersNumber[0] + 1;
         int number = spinWheel().number();
-        if (number == usersNumber[0] || number == usersNumber[1]){
+        if (number == usersNumber[0] || number == usersNumber[1]) {
             return betAmount.multiply(SPLIT_MULTIPLY);
         }
         return BigDecimal.ZERO;
     }
 
     private BigDecimal playStraight() {
-        int [] usersNumber = new int [3];
+        int[] usersNumber = new int[3];
         usersNumber[0] = printChoice("Введи число от 1 до 34. " +
                 "Второе и третье числа для ставки будет на 1 и 2 больше соответсвенно.");
         if (usersNumber[0] < 1 || usersNumber[0] > 34) {
@@ -125,7 +125,7 @@ public class Roulette implements Game {
         usersNumber[1] = usersNumber[0] + 1;
         usersNumber[2] = usersNumber[0] + 2;
         int number = spinWheel().number();
-        if (number == usersNumber[0] || number == usersNumber[1] || number == usersNumber[2]){
+        if (number == usersNumber[0] || number == usersNumber[1] || number == usersNumber[2]) {
             return betAmount.multiply(STRAIGHT_MULTIPLY);
         }
         return BigDecimal.ZERO;
@@ -141,7 +141,7 @@ public class Roulette implements Game {
 
     private BigDecimal playEven() {
         int number = spinWheel().number();
-        if (number % 2 == 0){
+        if (number % 2 == 0) {
             return betAmount.multiply(EVEN_MULTIPLY);
         }
         return BigDecimal.ZERO;
@@ -149,7 +149,7 @@ public class Roulette implements Game {
 
     private BigDecimal playOdd() {
         int number = spinWheel().number();
-        if (number % 2 != 0){
+        if (number % 2 != 0) {
             return betAmount.multiply(ODD_MULTIPLY);
         }
         return BigDecimal.ZERO;
@@ -157,7 +157,7 @@ public class Roulette implements Game {
 
     private BigDecimal playBlack() {
         Color color = getColor();
-        if (color.equals(Color.BLACK)){
+        if (color.equals(Color.BLACK)) {
             return betAmount.multiply(BLACK_MULTIPLY);
         }
         return BigDecimal.ZERO;
@@ -165,13 +165,13 @@ public class Roulette implements Game {
 
     private BigDecimal playRed() {
         Color color = getColor();
-        if (color.equals(Color.RED)){
+        if (color.equals(Color.RED)) {
             return betAmount.multiply(RED_MULTIPLY);
         }
         return BigDecimal.ZERO;
     }
 
-    private Color getColor(){
+    private Color getColor() {
         return spinWheel().color();
     }
 
