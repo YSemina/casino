@@ -14,10 +14,6 @@ public class Card {
         return cardValue;
     }
 
-    public Suit getSuit() {
-        return suit;
-    }
-
     @Override
     public String toString() {
         return "_______________" +

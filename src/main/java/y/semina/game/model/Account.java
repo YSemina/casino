@@ -12,7 +12,7 @@ public class Account {
     private static final int MIN_AMOUNT = 100;
     private static final int MAX_AMOUNT = 10000;
 
-    public Account (){
+    public Account() {
         amountAccount = BigDecimal.valueOf(DEFAULT_AMOUNT);
         System.out.println("Создан счёт, начальный баланс - " + DEFAULT_AMOUNT);
     }
@@ -21,33 +21,37 @@ public class Account {
         return amountAccount;
     }
 
-    public void deposit(BigDecimal amount){
+    public void deposit(BigDecimal amount) {
         amountAccount = amountAccount.add(amount);
     }
 
-    public void withdraw(BigDecimal amount){
-        if(amount.compareTo(amountAccount) <= 0) {
+    public void withdraw(BigDecimal amount) {
+        if (amount.compareTo(amountAccount) <= 0) {
             amountAccount = amountAccount.subtract(amount);
-        }
-        else{
+        } else {
             System.out.println("Недостаточно средств на счёте для списания. Доступно " + amountAccount);
-            offerDeposit();
-            withdraw(amount);
+            if (isDeposit()) {
+                withdraw(amount);
+            }
+            else
+                withdraw(BigDecimal.ZERO);
         }
     }
 
-    private void offerDeposit(){
+    private boolean isDeposit() {
         int playerChoice = printChoice("Пополнить?\n0 - нет\n1 - да");
-        if(playerChoice < 0 || playerChoice > 1){
+        if (playerChoice < 0 || playerChoice > 1) {
             System.out.println("Выбери 0 или 1");
-            offerDeposit();
+            return isDeposit();
         }
-        if (playerChoice == 1){
+        if (playerChoice == 1) {
             depositMenu();
+            return true;
         }
+        return false;
     }
 
-    private void depositMenu(){
+    private void depositMenu() {
         int amount = printChoice("Введи сумму для пополнения счета от " + MIN_AMOUNT + " до " + MAX_AMOUNT);
         if (amount < MIN_AMOUNT || amount > MAX_AMOUNT)
             depositMenu();

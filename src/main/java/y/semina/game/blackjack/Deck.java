@@ -26,16 +26,14 @@ public class Deck {
     private List<Card> initDeck() {
         List<Card> deck = new LinkedList<>();
 
-        int countCardValue = 13;
-        int countSuit = 4;
-
         List<CardValue> cardValues = new ArrayList<>(Arrays.asList(CardValue.values()));
-
         List<Suit> suits = new ArrayList<>(Arrays.asList(Suit.values()));
 
-        for (int i = 0; i < countSuit; i++) {
+        int countCardValue = cardValues.size();
+
+        for (Suit suit : suits) {
             for (int j = 0; j < countCardValue; j++) {
-                deck.add(new Card(cardValues.get(j), suits.get(i)));
+                deck.add(new Card(cardValues.get(j), suit));
             }
         }
         return deck;
