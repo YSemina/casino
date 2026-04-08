@@ -1,12 +1,17 @@
-package y.semina.game.model;
+package y.semina.model;
 
+import lombok.Getter;
 import y.semina.exception.NotEnoughMoneyException;
-import y.semina.game.util.Util;
 
 import java.math.BigDecimal;
 
-public class Player {
+import static y.semina.util.ConsoleUtils.makeBetMenu;
 
+/**
+ * Игрок казино. Содержит имя и игровой счёт.
+ */
+@Getter
+public class Player {
     private final String name;
     private final Account account;
 
@@ -15,12 +20,8 @@ public class Player {
         account = new Account();
     }
 
-    public String getName() {
-        return name;
-    }
-
     public BigDecimal makeBet() {
-        BigDecimal betAmount = Util.makeBet();
+        BigDecimal betAmount = makeBetMenu();
         if (account.withdraw(betAmount))
             return betAmount;
         else

@@ -1,14 +1,17 @@
 package y.semina.service;
 
-import y.semina.game.Game;
-import y.semina.game.model.Player;
+import y.semina.model.Player;
+import y.semina.strategy.GameStrategy;
 
+/**
+ * Сервис для управления игровым процессом в казино.
+ */
 public interface CasinoService {
-
-    Player registerPlayer();
-
-    Game choiceGame();
-
-    void playGame(Game game);
-
+    /**
+     * Запускает игру для игрока с использованием указанной стратегии.
+     *
+     * @param player       игрок
+     * @param gameStrategy стратегия игры
+     */
+    void playGame(Player player, GameStrategy gameStrategy);
 }
