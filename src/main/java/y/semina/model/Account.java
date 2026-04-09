@@ -1,11 +1,16 @@
-package y.semina.game.model;
+package y.semina.model;
+
+import lombok.Getter;
 
 import java.math.BigDecimal;
 
-import static y.semina.game.util.Util.printChoice;
+import static y.semina.util.ConsoleUtils.*;
 
+/**
+ * Банковский счёт игрока.
+ */
+@Getter
 public class Account {
-
     private BigDecimal amountAccount;
 
     private static final int DEFAULT_AMOUNT = 1000;
@@ -14,11 +19,7 @@ public class Account {
 
     public Account() {
         amountAccount = BigDecimal.valueOf(DEFAULT_AMOUNT);
-        System.out.println("Создан счёт, начальный баланс - " + DEFAULT_AMOUNT);
-    }
-
-    public BigDecimal getAmountAccount() {
-        return amountAccount;
+        print("Создан счёт, начальный баланс - " + DEFAULT_AMOUNT);
     }
 
     public void deposit(BigDecimal amount) {
@@ -35,9 +36,7 @@ public class Account {
             System.out.println("С баланса списано " + amount);
             System.out.println("Текущий баланс - " + amountAccount);
             return true;
-        }
-        else
-        {
+        } else {
             System.out.println("Недостаточно средств на счёте для списания. Доступно " + amountAccount);
             if (isDeposit()) {
                 return withdraw(amount);
@@ -47,7 +46,7 @@ public class Account {
     }
 
     private boolean isDeposit() {
-        int playerChoice = printChoice("Пополнить?\n0 - нет\n1 - да");
+        int playerChoice = printChoiceMenu("Пополнить?\n0 - нет\n1 - да");
         if (playerChoice < 0 || playerChoice > 1) {
             System.out.println("Выбери 0 или 1");
             return isDeposit();
@@ -58,12 +57,4 @@ public class Account {
         }
         return false;
     }
-
-    private void depositMenu() {
-        int amount = printChoice("Введи сумму для пополнения счета от " + MIN_AMOUNT + " до " + MAX_AMOUNT);
-        if (amount < MIN_AMOUNT || amount > MAX_AMOUNT)
-            depositMenu();
-        deposit(BigDecimal.valueOf(amount));
-    }
-
 }

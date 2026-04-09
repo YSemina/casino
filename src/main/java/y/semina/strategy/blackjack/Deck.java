@@ -1,21 +1,31 @@
-package y.semina.game.blackjack;
+package y.semina.strategy.blackjack;
 
 import y.semina.exception.DeckIsEmptyException;
+import y.semina.model.Card;
+import y.semina.model.enums.CardValue;
+import y.semina.model.enums.Suit;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
+/**
+ * Колода игральных карт (52 карты, 4 масти по 13 значений).
+ */
 public class Deck {
-
     private final List<Card> cards;
 
+    /**
+     * Конструктор. Инициализирует и перемешивает колоду.
+     */
     public Deck() {
         cards = shuffleDeck(initDeck());
     }
 
+    /**
+     * Извлекает и возвращает верхнюю карту из колоды.
+     *
+     * @return следующая карта
+     * @throws DeckIsEmptyException если колода пуста
+     */
     public Card pollCard() {
         if (!cards.isEmpty()) {
             return cards.remove(0);
@@ -23,6 +33,11 @@ public class Deck {
         throw new DeckIsEmptyException("Колода закончилась");
     }
 
+    /**
+     * Создаёт новую колоду из 52 карт (все масти × все значения).
+     *
+     * @return список карт в исходном порядке
+     */
     private List<Card> initDeck() {
         List<Card> deck = new LinkedList<>();
 
@@ -39,6 +54,12 @@ public class Deck {
         return deck;
     }
 
+    /**
+     * Перемешивает колоду случайным образом.
+     *
+     * @param deck исходная колода (будет опустошена в процессе)
+     * @return перемешанная колода
+     */
     private List<Card> shuffleDeck(List<Card> deck) {
         int deckSize = deck.size();
         int remainingSize = deck.size();
@@ -51,10 +72,4 @@ public class Deck {
         }
         return shuffledDeck;
     }
-
-    @Override
-    public String toString() {
-        return cards.toString();
-    }
-
 }
